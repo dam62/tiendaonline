@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pedido,tiendaonline.pedido,model_tiendaonline_pedido,base.group_user,1,1,1,1
+access_cliente,tiendaonline.cliente,model_tiendaonline_cliente,base.group_user,1,1,1,1
+access_producto,tiendaonline.producto,model_tiendaonline_producto,base.group_user,1,1,1,1

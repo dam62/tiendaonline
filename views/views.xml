@@ -1,0 +1,127 @@
+<odoo>
+  <data>
+    <!--Vista Producto-->
+    <record>
+      <field name="name">tiendaonline.producto.list</field>
+      <field name="model">tiendaonline.producto</field>
+      <field name="arch" type="xml">
+        <list string="Productos">
+          <field name="nombreProducto"/>
+        </list>
+    </record>
+    <!--Formulario Productos-->
+    <record id="view_producto_form" model="ir.ui.view">
+      <field name="name">tiendaonline.producto.form</field>
+      <field name="model">tiendaonline.producto</field>
+      <field name="arch" type="xml">
+        <form string="Producto">
+          <sheet>
+            <group>
+              <field name="nombreProducto"/>
+              <field name="tipoProducto"/>
+              <field name="precioProducto"/>
+            </group>
+            <notebook>
+              <page string="Pedidos">
+                <field name="pedido_ids"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Vista Cliente-->
+    <record>
+      <field name="name">tiendaonline.cliente.list</field>
+      <field name="model">tiendaonline.cliente</field>
+      <field name="arch" type="xml">
+        <list string="Clientes">
+          <field name="nombreCliente"/>
+        </list>
+    </record>
+    <!--Formulario Clientes-->
+    <record id="view_cliente_form" model="ir.ui.view">
+      <field name="name">tiendaonline.cliente.form</field>
+      <field name="model">tiendaonline.cliente</field>
+      <field name="arch" type="xml">
+        <form string="Cliente">
+          <sheet>
+            <group>
+              <field name="dniCliente"/>
+              <field name="nombreCliente"/>
+              <field name="apellidosCliente"/>
+            </group>
+            <notebook>
+              <page string="Pedidos">
+                <field name="pedido_ids"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Vista Pedidos-->
+    <record>
+      <field name="name">tiendaonline.pedido.list</field>
+      <field name="model">tiendaonline.pedido</field>
+      <field name="arch" type="xml">
+        <list string="Pedidos">
+          <field name="nombrePedido"/>
+        </list>
+    </record>
+    <!--Formulario Pedidos-->
+    <record id="view_pedido_form" model="ir.ui.view">
+      <field name="name">tiendaonline.pedido.form</field>
+      <field name="model">tiendaonline.pedido</field>
+      <field name="arch" type="xml">
+        <form string="Pedido">
+          <sheet>
+            <group>
+              <field name="nombrePedido"/>
+              <field name="fechaPedido"/>
+              <field name="importeTotal"/>
+            </group>
+            <notebook>
+              <page string="Productos">
+                <field name="producto_ids"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--ACCIONES Y MENÚS-->
+    <record id="action_producto" model="ir.actions.act_window">
+      <field name="name">Productos</field>
+      <field name="res_model">tiendaonline.producto</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_cliente" model="ir.actions.act_window">
+      <field name="name">Clientes</field>
+      <field name="res_model">tiendaonline.cliente</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_pedido" model="ir.actions.act_window">
+      <field name="name">Pedidos</field>
+      <field name="res_model">tiendaonline.pedido</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!--Menú principal-->
+    <menuitem id="menu_tiendaonline_root" name="Productos"/>
+
+    <!--Submenús-->
+    <menuitem id="menu_tiendaonline_productos" name="Productos"
+              parent="menu_tiendaonline_root" action="action_producto"/>
+    
+    <menuitem id="menu_tiendaonline_clientes" name="Clientes"
+              parent="menu_tiendaonline_root" action="action_cliente"/>
+
+    <menuitem id="menu_tiendaonline_pedidos" name="Pedidos"
+              parent="menu_tiendaonline_root" action="action_pedido"/>
+  </data>
+</odoo>
