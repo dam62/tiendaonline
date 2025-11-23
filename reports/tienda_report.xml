@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Acción del reporte PDF -->
+  <record id="action_report_pedido" model="ir.actions.report">
+    <field name="name">Informe de pedidos</field>
+    <field name="model">tiendaonline.pedido</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">tiendaonline.report_pedido</field>
+    <field name="report_file">tiendaonline.report_pedido</field>
+    <field name="binding_model_id" ref="tiendaonline.model_tiendaonline_pedido"/>
+    <field name="binding_type">report</field>
+  </record>
+
+  <!-- Plantilla QWeb del informe -->
+    <template id="report_pedido">
+        <!-- Llama a la estructura general de los reportes de Odoo -->
+        <t t-call="web.html_container">
+            <!-- Itera sobre los registros seleccionados -->
+            <t t-foreach="docs" t-as="ped">
+                <!-- Inserta el diseño estándar con encabezado y pie -->
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Título del reporte -->
+                        <h2>Informe de los pedidos</h2>
+
+                        <!-- Ejemplo de tabla con datos -->
+                        <table class="table table-sm table-bordered" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Fecha del pedido</th>
+                                    <th>Tipo de producto</th>
+                                    <th>Producto</th>
+                                    <th>Importe Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-esc="ped.fechaPedido"/></td>
+                                    <td>
+                                        <t t-foreach="ped.producto_ids" t-as="product">
+                                            <div><t t-esc="product.tipoProducto"/></div>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="ped.producto_ids" t-as="product">
+                                            <div><t t-esc="product.nombreProducto"/></div>
+                                        </t>
+                                    </td>
+                                    <td><t t-esc="ped.importeTotal"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

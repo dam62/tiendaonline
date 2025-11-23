@@ -24,6 +24,7 @@ Consigue todo lo que encesitas a un precio increible.
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'reports/tienda_report.xml',
         'views/views.xml',
         'views/templates.xml',
     ],

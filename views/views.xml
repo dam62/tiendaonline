@@ -1,13 +1,16 @@
 <odoo>
   <data>
     <!--Vista Producto-->
-    <record>
+    <record id="view_producto_list" model="ir.ui.view">
       <field name="name">tiendaonline.producto.list</field>
       <field name="model">tiendaonline.producto</field>
       <field name="arch" type="xml">
         <list string="Productos">
           <field name="nombreProducto"/>
+          <field name="tipoProducto"/>
+          <field name="cantidadProducto"/>
         </list>
+      </field>
     </record>
     <!--Formulario Productos-->
     <record id="view_producto_form" model="ir.ui.view">
@@ -19,26 +22,25 @@
             <group>
               <field name="nombreProducto"/>
               <field name="tipoProducto"/>
-              <field name="precioProducto"/>
+              <field name="cantidadProducto"/>
             </group>
-            <notebook>
-              <page string="Pedidos">
-                <field name="pedido_ids"/>
-              </page>
-            </notebook>
           </sheet>
         </form>
       </field>
     </record>
 
     <!--Vista Cliente-->
-    <record>
+    <record  id="view_cliente_list" model="ir.ui.view">
       <field name="name">tiendaonline.cliente.list</field>
       <field name="model">tiendaonline.cliente</field>
       <field name="arch" type="xml">
         <list string="Clientes">
+          <field name="dniCliente"/>
           <field name="nombreCliente"/>
+          <field name="apellidosCliente"/>
+          <field name="correoCliente"/>
         </list>
+      </field>
     </record>
     <!--Formulario Clientes-->
     <record id="view_cliente_form" model="ir.ui.view">
@@ -51,6 +53,7 @@
               <field name="dniCliente"/>
               <field name="nombreCliente"/>
               <field name="apellidosCliente"/>
+              <field name="correoCliente"/>
             </group>
             <notebook>
               <page string="Pedidos">
@@ -63,13 +66,17 @@
     </record>
 
     <!--Vista Pedidos-->
-    <record>
+    <record  id="view_pedido_list" model="ir.ui.view">
       <field name="name">tiendaonline.pedido.list</field>
       <field name="model">tiendaonline.pedido</field>
       <field name="arch" type="xml">
         <list string="Pedidos">
-          <field name="nombrePedido"/>
+          <field name="infoPedido"/>
+          <field name="fechaPedido"/>
+          <field name="importeTotal"/>
+          <field name="cliente_id"/>
         </list>
+      </field>
     </record>
     <!--Formulario Pedidos-->
     <record id="view_pedido_form" model="ir.ui.view">
@@ -77,11 +84,19 @@
       <field name="model">tiendaonline.pedido</field>
       <field name="arch" type="xml">
         <form string="Pedido">
+          <header>
+              <button name="%(action_report_pedido)d"
+                string="Imprimir Pedidos"
+                type="action"
+                class="oe_highlight"
+                icon="fa-print"/>
+          </header>
           <sheet>
             <group>
-              <field name="nombrePedido"/>
+              <field name="infoPedido"/>
               <field name="fechaPedido"/>
               <field name="importeTotal"/>
+              <field name="cliente_id"/>
             </group>
             <notebook>
               <page string="Productos">
@@ -112,7 +127,7 @@
     </record>
 
     <!--Menú principal-->
-    <menuitem id="menu_tiendaonline_root" name="Productos"/>
+    <menuitem id="menu_tiendaonline_root" name="Tienda Online"/>
 
     <!--Submenús-->
     <menuitem id="menu_tiendaonline_productos" name="Productos"
